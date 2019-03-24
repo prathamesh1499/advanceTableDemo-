@@ -1,0 +1,44 @@
+import UIKit
+var tableData = [String]()
+var tableCon = [String]()
+var image = [String]()
+ 
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
+{
+    
+   
+    @IBOutlet weak var myTable: UITableView!
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        //next step done as the tableCon data is less than the tableData.
+        if( tableData.count < tableCon.count)
+        {
+            return tableData.count
+        }else{
+            return tableCon.count
+        }
+        
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: "tableCell")
+        cell.textLabel?.text = tableData[indexPath.row] //"Hello"
+        cell.detailTextLabel?.text = tableCon[indexPath.row]
+            cell.imageView?.image = UIImage(named: image[indexPath.row])
+        return cell
+    }
+    override func viewDidAppear(_ animated: Bool)
+    {
+        myTable.reloadData()
+        
+    }
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        tableData  = ["Alex" , "Prathamesh", "James", "Cristiano", "Messi"]
+        tableCon  = ["hey PRathu", "i m prathu", "My name is james","I m king ", "I m footballer"]
+        image = ["img", "img2", "img3", "img4","img5","img6"]
+        
+        
+    }
+ 
